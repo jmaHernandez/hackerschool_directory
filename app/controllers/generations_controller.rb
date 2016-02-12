@@ -10,9 +10,13 @@ class GenerationsController < ApplicationController
 
   def create
     @generation = Generation.new(generation_params)
-    @generation.save
-
-    redirect_to generations_path
+    if @generation.save
+      flash[:success] = "¡Generación creada exitosamente!"
+      redirect_to generations_path
+    else
+      render :new
+    end
+    
   end
 
   def edit

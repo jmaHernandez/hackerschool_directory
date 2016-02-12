@@ -1,5 +1,6 @@
 class HackersController < ApplicationController
 
+
   # GET /hackers
   # GET /hackers.json
   def index
