@@ -27,11 +27,4 @@
 </div>
 <%=f.error_span(:email) %>
 
-<div class="form-group">
-  <%= f.label :generation_id, :class => 'control-label col-lg-2' %>
-  <div class="col-lg-10 select-form-control">
-    <%= f.select :generation_id, Generation.all.map{|generation| [generation.name, generation.id] }, :class => 'form-control' %>
-  </div>
-  
-</div>
-<%=f.error_span(:generation_id) %>
+

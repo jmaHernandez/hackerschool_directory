@@ -1,34 +1,40 @@
 class HackersController < ApplicationController
-  before_action :set_hacker, only: [:show, :edit, :update, :destroy]
 
   # GET /hackers
   # GET /hackers.json
   def index
-    @hackers = Hacker.all
+    @generation = Generation.find(params[:generation_id])
+    @hackers = @generation.hackers
   end
 
   # GET /hackers/1
   # GET /hackers/1.json
   def show
+    @generation = Generation.find(params[:generation_id])
+    @hacker = @generation.hackers.find(params[:id])
   end
 
   # GET /hackers/new
   def new
-    @hacker = Hacker.new
+    @generation = Generation.find(params[:generation_id])
+    @hacker = @generation.hackers.new
   end
 
   # GET /hackers/1/edit
   def edit
+    @generation = Generation.find(params[:generation_id])
+    @hacker = @generation.hackers.find(params[:id])
   end
 
   # POST /hackers
   # POST /hackers.json
   def create
-    @hacker = Hacker.new(hacker_params)
+    @generation = Generation.find(params[:generation_id])
+    @hacker = @generation.hackers.new(hacker_params)
 
     respond_to do |format|
       if @hacker.save
-        format.html { redirect_to hackers_path, notice: 'Hacker was successfully created.' }
+        format.html { redirect_to generation_hackers_path(@generation), notice: 'Hacker was successfully created.' }
         format.json { render :show, status: :created, location: @hacker }
       else
         format.html { render :new }
@@ -40,9 +46,11 @@ class HackersController < ApplicationController
   # PATCH/PUT /hackers/1
   # PATCH/PUT /hackers/1.json
   def update
+    @generation = Generation.find(params[:generation_id])
+    @hacker = @generation.hackers.find(params[:id])
     respond_to do |format|
       if @hacker.update(hacker_params)
-        format.html { redirect_to hackers_path, notice: 'Hacker was successfully updated.' }
+        format.html { redirect_to generation_hackers_path(@generation), notice: 'Hacker was successfully updated.' }
         format.json { render :show, status: :ok, location: @hacker }
       else
         format.html { render :edit }
@@ -54,18 +62,17 @@ class HackersController < ApplicationController
   # DELETE /hackers/1
   # DELETE /hackers/1.json
   def destroy
+    @generation = Generation.find(params[:generation_id])
+    @hacker = @generation.hackers.find(params[:id])
     @hacker.destroy
     respond_to do |format|
-      format.html { redirect_to hackers_url, notice: 'Hacker was successfully destroyed.' }
+      format.html { redirect_to generation_hackers_url(@generation), notice: 'Hacker was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_hacker
-      @hacker = Hacker.find(params[:id])
-    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hacker_params

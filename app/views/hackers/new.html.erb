@@ -2,13 +2,13 @@
   <h1> Nuevo Hacker </h1>
 </div>
 
-<%= form_for @hacker, html: { class: "form-horizontal generation" } do |f| %>
+<%= form_for [@generation, @hacker], html: { class: "form-horizontal generation" } do |f| %>
   <%= render 'form', f: f %>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit "Guardar", class: 'btn btn-primary' %>
-      <%= link_to "Cancelar",  generations_path, class: 'btn btn-default' %>
+      <%= link_to "Cancelar",  generation_hackers_path(@generation), class: 'btn btn-default' %>
     </div>
   </div>
 <% end %>

@@ -14,14 +14,14 @@
   <tbody>
     <% @hackers.each do |hacker| %>
       <tr>
-        <td><%= link_to hacker.id, hacker_path(hacker) %></td>
+        <td><%= link_to hacker.id, generation_hacker_path(@generation, hacker) %></td>
         <td><%= hacker.name %></td>
         <td><%= hacker.email %></td>
         <td>
           <%= link_to "Editar",
-                      edit_hacker_path(hacker), :class => 'btn btn-default btn-xs' %>
+                      edit_generation_hacker_path(@generation, hacker), :class => 'btn btn-default btn-xs' %>
           <%= link_to "Eliminar",
-                      hacker_path(hacker),
+                      generation_hacker_path(@generation, hacker),
                       :method => :delete,
                       :data => { :confirm => "¿Realmente estás seguro de borrar?" },
                       :class => 'btn btn-xs btn-danger' %>
@@ -32,5 +32,5 @@
 </table>
 
 <%= link_to "Nueva Hacker",
-            new_hacker_path,
+            new_generation_hacker_path(@generation),
             :class => 'btn btn-primary' %>
