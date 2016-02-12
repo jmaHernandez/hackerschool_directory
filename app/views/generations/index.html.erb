@@ -1,15 +1,14 @@
-<%- model_class = Generation -%>
+
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1>Generaciones</h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:start_date) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th> ID </th>
+      <th> Nombre </th>
+      <th> Fecha de Inicio </th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -20,12 +19,12 @@
         <td><%= generation.start_date %></td>
         <td><%=l generation.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to "Editar",
                       edit_generation_path(generation), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <%= link_to "Eliminar",
                       generation_path(generation),
                       :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :data => { :confirm => "¿Realmente estás seguro de borrar?" },
                       :class => 'btn btn-xs btn-danger' %>
         </td>
       </tr>
@@ -33,6 +32,6 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to "Nueva generación",
             new_generation_path,
             :class => 'btn btn-primary' %>
