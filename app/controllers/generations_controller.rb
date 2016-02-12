@@ -26,8 +26,13 @@ class GenerationsController < ApplicationController
   def update
     @generation = Generation.find(params[:id])
 
-    @generation.update_attributes(generation_params)
-    redirect_to generations_path
+    if @generation.update_attributes(generation_params)
+      flash[:success] = "¡Generación actualizada exitosamente!"
+      redirect_to generations_path
+    else
+      render :edit
+    end
+    
   end
 
   def destroy
