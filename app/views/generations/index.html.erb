@@ -17,7 +17,6 @@
         <td><%= link_to generation.id, generation_path(generation) %></td>
         <td><%= generation.name %></td>
         <td><%= generation.start_date %></td>
-        <td><%=l generation.created_at %></td>
         <td>
           <%= link_to "Editar",
                       edit_generation_path(generation), :class => 'btn btn-default btn-xs' %>
