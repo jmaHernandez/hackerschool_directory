@@ -1,36 +1,36 @@
-
 <div class="page-header">
-  <h1>Hackers</h1>
+    <h1>Hackers</h1>
 </div>
+
+<p>
+    <%= link_to "New Hacker", new_generation_hacker_path(@generation), :class => 'btn btn-primary' %>
+</p>
+
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th> ID </th>
-      <th> Nombre </th>
-      <th> Email </th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @hackers.each do |hacker| %>
-      <tr>
-        <td><%= link_to hacker.id, generation_hacker_path(@generation, hacker) %></td>
-        <td><%= hacker.name %></td>
-        <td><%= hacker.email %></td>
-        <td>
-          <%= link_to "Editar",
+    <thead>
+        <tr>
+            <th> ID </th>
+            <th> Nombre </th>
+            <th> Email </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @hackers.each do |hacker| %>
+            <tr>
+                <td><%= link_to hacker.id, generation_hacker_path(@generation, hacker) %></td>
+                <td><%= hacker.name %></td>
+                <td><%= hacker.email %></td>
+                <td>
+                    <%= link_to "Editar",
                       edit_generation_hacker_path(@generation, hacker), :class => 'btn btn-default btn-xs' %>
-          <%= link_to "Eliminar",
+                    <%= link_to "Eliminar",
                       generation_hacker_path(@generation, hacker),
                       :method => :delete,
                       :data => { :confirm => "¿Realmente estás seguro de borrar?" },
                       :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
 </table>
-
-<%= link_to "Nueva Hacker",
-            new_generation_hacker_path(@generation),
-            :class => 'btn btn-primary' %>

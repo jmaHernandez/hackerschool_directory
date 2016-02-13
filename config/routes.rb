@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  root 'generations#index'
+
   resources :generations do
     resources :hackers
+    resources :courses
   end
+
+  resources :languages
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

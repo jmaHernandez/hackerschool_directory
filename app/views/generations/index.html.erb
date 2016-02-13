@@ -1,37 +1,40 @@
 
 <div class="page-header">
-  <h1>Generaciones</h1>
+    <h1>Generaciones</h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th> ID </th>
-      <th> Nombre </th>
-      <th> Fecha de Inicio </th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @generations.each do |generation| %>
-      <tr>
-        <td><%= link_to generation.id, generation_path(generation) %></td>
-        <td><%= generation.name %></td>
-        <td><%= generation.start_date %></td>
-        <td><%= link_to "Hackers", generation_hackers_path(generation), class: "btn-xs btn-primary" %></td>
-        <td>
-          <%= link_to "Editar",
-                      edit_generation_path(generation), :class => 'btn btn-default btn-xs' %>
-          <%= link_to "Eliminar",
-                      generation_path(generation),
-                      :method => :delete,
-                      :data => { :confirm => "¿Realmente estás seguro de borrar?" },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= link_to "Nueva generación",
-            new_generation_path,
-            :class => 'btn btn-primary' %>
+<p>
+    <%= link_to "Nueva generación", new_generation_path, :class => 'btn btn-primary' %>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Fecha de Inicio</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @generations.each do |generation| %>
+            <tr>
+                <td><%= link_to generation.id, generation_path(generation) %></td>
+                <td><%= generation.name %></td>
+                <td><%= generation.start_date %></td>
+                <td>
+                    <%= link_to "Courses", generation_courses_path(generation), class: "btn-xs btn-primary" %>
+                    <%= link_to "Hackers", generation_hackers_path(generation), class: "btn-xs btn-primary" %>
+                </td>
+                <td>
+                    <%= link_to "Editar", edit_generation_path(generation), :class => 'btn btn-default btn-xs' %>
+                    <%= link_to "Eliminar", generation_path(generation),
+                        :method => :delete,
+                        :data => { :confirm => "¿Realmente estás seguro de borrar?" },
+                        :class => 'btn btn-xs btn-danger' %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
